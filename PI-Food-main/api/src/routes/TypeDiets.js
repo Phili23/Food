@@ -1,20 +1,33 @@
 const { Router } = require('express');
 const router = Router();
 const {TypeDiet} = require('../db');
-const {diets} = require('../controllers/jsonDiets')
 
-router.get('/', async (req,res) => {
-    //console.log(diets);
-    const verificacion = await TypeDiet.findAll();
-    if(verificacion.length < 1) { 
-       const formateo= diets.forEach(e => {
-            TypeDiet.findOrCreate({
-                where: {name:e.name}
-            })
+const axios=require('axios')
+
+let diets = [{name: 'gluten free'},{name: 'ketogenic'},{name: 'vegetarian'},{name: 'lacto-vegetarian'},
+{name: 'lacto ovo vegetarian'},{name: 'vegan'},{name: 'pescatarian'},{name: 'paleolithic'},{name: 'primal'},
+{name: 'whole 30'}];
+
+
+router.get('/',async(req,res)=>{
+    console.log(diets)
+    TypeDiet.findAll()
+    .then((response)=>{
+       
+        if(response.length >0){
+            console.log('yosoy',response)
+            return res.json(response).status(200)}
+        else{ TypeDiet.bulkCreate(diets) 
+            
+        .then((response)=>{
+           // console.log('yosoy',response)
+            return res.json(response);
         })
-        const carga = await TypeDiet.bulkCreate(formateo);
-      console.log("Pre-carga de Genre lista !");
-    }  
-        //res.send(allTheTypes.map(e => e.name))
+        .catch((err)=>{next(err);})
+    }
+    })
+
+
 })
+
 module.exports = router;
