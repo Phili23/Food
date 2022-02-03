@@ -17,32 +17,12 @@ router.get('/',async(req,res)=>{
     .then((response)=>{
        
         if(response.length >0){
-            console.log('yosoy',response)
-            return res.json(response).status(200)}
+           
+         return res.json(response).status(200)}
         else{ TypeDiet.bulkCreate(diets) 
             
         .then((response)=>{
-           // console.log('yosoy',response)
-            return res.json(response);
-        })
-        .catch((err)=>{next(err);})
-    }
-    })
-
-
-
-    router.get('/',async(req,res)=>{
-    console.log(diets)
-    TypeDiet.findAll()
-    .then((response)=>{
-       
-        if(response.length >0){
-            console.log('yosoy',response)
-            return res.json(response).status(200)}
-        else{ TypeDiet.bulkCreate(diets) 
-            
-        .then((response)=>{
-           // console.log('yosoy',response)
+            console.log('base de datos cargada')
             return res.json(response);
         })
         .catch((err)=>{next(err);})
@@ -51,10 +31,7 @@ router.get('/',async(req,res)=>{
 
 
 })
-}) 
-
-        
     
-    module.exports = router;
+    
 
 module.exports = router;

@@ -16,7 +16,7 @@ const  getApiInfo=async()=>{
          spoonacularScore:el.spoonacularScore,
          healthScore:el.healthScore,
          image:el.image,
-         typeDiets: el.diets.map((d)=> {return{name:d}}),
+         diets: el.diets.map((d)=> {return{name:d}}),
          steps: (el.analyzedInstructions[0] && el.analyzedInstructions[0].steps?el.analyzedInstructions[0].steps.map(item=>item.step).join(" \n"):''),
          /*typeDiets: el.typeDiets.map(el => el.name)*/
          

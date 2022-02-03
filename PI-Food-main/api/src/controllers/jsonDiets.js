@@ -5,9 +5,7 @@ const {Sequelize} = require('sequelize');
 const { API_KEY } = process.env;
 const {temps} = require('../controllers/jsonDiets');
 
-let diets = [{name: 'gluten free'},{name: 'ketogenic'},{name: 'vegetarian'},{name: 'lacto-vegetarian'},
-{name: 'lacto ovo vegetarian'},{name: 'vegan'},{name: 'pescatarian'},{name: 'paleolithic'},{name: 'primal'},
-{name: 'whole 30'}];
+
 
 
 
@@ -23,7 +21,7 @@ const  getApiInfo=async()=>{
         spoonacularScore:el.spoonacularScore,
         healthScore:el.healthScore,
         image:el.image,
-        typeDiets: el.diets.map((d)=> {return{name:d}}),
+        diets: el.diets.map((d)=> {return{name:d}}),
         analyzedInstructions: el.analyzedInstructions
         /*typeDiets: el.typeDiets.map(el => el.name)*/
         
@@ -37,7 +35,7 @@ const  getApiInfo=async()=>{
 async function getAllDietss() {
     // devuelvo solo los temperamentos
         
-    let dietList = allData.flatMap((el) => {
+    let dietList = apiInfo.flatMap((el) => {
         console.log('yo soy listas la dietas', el.dietList)
         console.log('yo soy typos de dietas', el.typeDiets)
      /*  return el.typeDiets; */

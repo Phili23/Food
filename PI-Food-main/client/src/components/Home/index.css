@@ -1,0 +1,17 @@
+.card-container12s{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    padding: 0px 10px 0px 20px;
+    
+    backdrop-filter:blur(7.5px); 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  justify-content: space-around;
+    
+    }
+    .aline{
+      text-align: center; 
+    }
