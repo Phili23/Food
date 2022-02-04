@@ -44,7 +44,7 @@ return(
                  <img className='' src={myFoods[0].image? myFoods[0].image:myFoods[0].image} alt="" width="190px" height="190px"/> 
                  <div  className=''>
                  <h4 className=''>{myFoods[0].title}</h4><h4 >Diets:  </h4>  
-                 {myFoods[0].diets.map(el=>el.name + ('  '))}  
+                 {myFoods[0].diets.map(el=>el.name + (' - '))}  
                  <h6>Summary:<br/>{myFoods[0].summary}  </h6>
                  <h5 >spoonacularScore:{myFoods[0].spoonacularScore} </h5>   
                  <h5 >healthScore:{myFoods[0].healthScore}</h5>

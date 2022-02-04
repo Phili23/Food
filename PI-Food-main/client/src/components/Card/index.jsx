@@ -7,10 +7,14 @@ export default function Card({ id,title,summary,spoonacularScore, healthScore, i
 <div>
     <div key={id}>
     <img src={image} alt="img not found" width="350px" height="250px"/>
-    <h4> Title <br/>{title}</h4>
+    <h5> Title <br/>{title}</h5>
     </div>
      <div>
-     <h5>Diets: <br/>{typeDiets}</h5></div> 
+     <h6>Diets: <br/>{typeDiets}</h6></div> 
+     <div>
+     <h6>HealthScore: <br/>{healthScore}</h6></div> 
+     
+
     
 </div>
 

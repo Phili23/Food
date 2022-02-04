@@ -1,0 +1,24 @@
+.scroll-container {
+    display: block;
+    width: 350px;
+    height: 200px;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    vertical-align: top;
+  }
+  .contenedor {
+    width: 500px;
+    height: 500px;
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  
+    margin-top: -250px;   /* height/2 = 500px / 2 */
+    margin-left: -250px;  /* width/2 = 500px / 2 */
+  }
