@@ -10,40 +10,32 @@ export default function Detail(props) {
 
    useEffect(() => {
       dispatch(getDetail(id));//traigo el estado detail
-   }, [id, dispatch])
+   }, [])
 
-   function handleClick(id) {
-      dispatch(getDetail(id));
-   }
-
-   const myFoods = useSelector((state) => state.details)//le traigo desde el reducer
+   
+   const detailsstate = useSelector((state) => state.details)//le traigo desde el reducer
 
    return (
-      <div className=''  >
-         <Link to='/home'>
-            <button className='' onClick={e => { handleClick(e) }} >Go to Home</button>
-         </Link>
-         <br />
-         <h1 className="">Food Detail</h1>
+      <div>
+       
+     { 
+       detailsstate.length > 0 ? 
+       
+       <div > 
+           <Link to='/home'><button >Back to main Page </button> </Link>
+           <h1 > {detailsstate[0].title} </h1>
+           <img csrc={detailsstate[0].img ? detailsstate[0].img :'https://st.depositphotos.com/1036708/2191/i/600/depositphotos_21918797-stock-photo-knife-and-fork-with-plate.jpg'}/>
+           <h3 >Type Diet: {detailsstate[0].typeDiets.map(t => t.name)}</h3>
+           {/* <h4 >Dish Type: {detailsstate[0].dishTypes ? detailsstate[0].dishTypes.map(d => d.name) :'dish type not found'  }</h4> */}
+           <h5 >summary: {detailsstate[0].summary}</h5>
+           <h5 >healthScore: {detailsstate[0].healthScore}</h5>
+           <h5 >puntutation: {detailsstate[0].spoonacularScore}</h5>
+           <h5>steps:{ Array.isArray(detailsstate[0].analyzedInstructions) ? detailsstate[0].analyzedInstructions.map(e => e.steps.map(f => f.step)) : detailsstate[0].analyzedInstructions }</h5>
+       </div> : 
+       
+       <div> <h2> loading... </h2> </div>
 
-         <span className=''>
-            {
-               myFoods.length > 0 ?
-                  <div className=''  >
-
-                     <img className='' src={myFoods[0].image ? myFoods[0].image : myFoods[0].image} alt="" width="190px" height="190px" />
-                     <h6>Name:<br />{myFoods[0].name}  </h6>
-                        <h6>Diets:  {myFoods[0].typeDiets ? myFoods[0].typeDiets.map(el => el.name) : myFoods[0].diets.map((el, index) => <p key={index} >{el.name ? el.name : el}</p>)}</h6>
-                        <h6>Summary:<br />{myFoods[0].summary}  </h6>
-                        <h6 >spoonacularScore:{myFoods[0].spoonacularScore} </h6>  <h6 >healthScore:{myFoods[0].healthScore}</h6>
-                        <h6 >steps:<br />{myFoods[0].steps && <p>{myFoods[0].steps}</p>}  </h6>
-                   
-                  </div > :
-                  <span className=''>
-                <p >Loading...</p></span>
-            }
-         </span>
-      </div>
-   )
+    }
+        </div>
+    )
 }
-    
