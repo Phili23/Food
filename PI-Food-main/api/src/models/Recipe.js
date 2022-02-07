@@ -10,12 +10,12 @@ module.exports = (sequelize) => {
       primaryKey: true,
       allowNull: true,
     },
-    title: {
+    name: {
       type: DataTypes.STRING,
       allowNull: true,
     },
     summary: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: true,
     },
     spoonacularScore: {
@@ -25,17 +25,16 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER
     },
     steps: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
+      type: DataTypes.TEXT,
     },
-    analyzedInstructions: {
-      type: DataTypes.ARRAY(DataTypes.TEXT),
-    },  
+     
     image: {
-      type: DataTypes.STRING
+      type: DataTypes.TEXT
     },
     created: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      defaultValue: true,
+      allowNull: false,
   }
   });
 };

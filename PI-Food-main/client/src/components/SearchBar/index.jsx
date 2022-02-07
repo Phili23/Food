@@ -1,36 +1,3 @@
-/* import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { foodName } from "../../redux/actions";
-
-export default function SearchBar() {
-
-const dispatch=useDispatch()
-const[title, setTitle]=useState('')
-
-function handleImputChange(e){
-    e.preventDefault()
-    setTitle(e.target.value)    
-}
-
-function handleSubmit(e) {// cdo se presiona Buscar, se despacha la accion p/ buscar en la api x name
-    e.preventDefault()
-    dispatch(foodName(title))
-    setTitle('');
-}
-    return(
-    <div>
-        <input 
-        type="text"
-        placeholder= 'Buscar...' required
-        onChange = {(e) => handleImputChange(e)}
-    />
-    <button type='submit' onClick={ (e) => handleSubmit(e)}>Search...</button>
-</div>
-
-    )
-} */
-
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { foodName } from "../../redux/actions";
@@ -60,7 +27,6 @@ export default function SearchBar() {
                 placeholder="Buscar..." required
                 value={name}
                 onChange={(e) => { handleInputChange(e) }}
-
             />
             <button className="titulos" type="submit" onClick={(e) => { handleSubmit(e) }}>Search...</button>
         </div>

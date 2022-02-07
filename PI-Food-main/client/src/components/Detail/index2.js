@@ -47,3 +47,10 @@ export default function Detail(props) {
    )
 }
     
+             /* image={c.img? c.img:c.image} typeDiets */
+              /**img cosas de la api...back image diets */
+
+/*  <h3>Ge:</h3>{myFoods[0].typeDiets?.map((el, index)=> <p key={index} >{el.name ? el.name : el}</p>)}</> */ 
+/* <h5 >healthScore:{myFoods[0].steps}</h5> */ 
+
+

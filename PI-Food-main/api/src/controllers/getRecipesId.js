@@ -4,8 +4,8 @@ const {Sequelize} = require('sequelize');
 const { API_KEY } = process.env;
 
 
-const  getApiInfo=async()=>{
-    let apiUrlOne=await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=10&addRecipeInformation=true`)
+const getApiById=async()=>{
+    let apiUrlOne=await axios.get(`https://api.spoonacular.com/recipes/${id}/information?${API_KEY}&number=10&addRecipeInformation=true`)
     console.log(apiUrlOne)
      
     const apiInfo=await apiUrlOne.data.results.map(el=>{
@@ -16,7 +16,7 @@ const  getApiInfo=async()=>{
          spoonacularScore:el.spoonacularScore,
          healthScore:el.healthScore,
          image:el.image,
-         typeDiets: el.diets.map((d)=> {return{name:d}}),
+         TypeDiets: el.diets.map((d)=> {return{name:d}}),
          steps: (el.analyzedInstructions[0] && el.analyzedInstructions[0].steps?el.analyzedInstructions[0].steps.map(item=>item.step).join(" \n"):'')
           /*typeDiets: el.typeDiets.map(el => el.name)*/
           /* steps: el.analyzedInstructions[0]?.steps.map(e => {
@@ -32,7 +32,7 @@ const  getApiInfo=async()=>{
  }
 
 
-const getDbInfo = async () => {
+const getDbInfoId = async () => {
     return await Recipe.findAll({
         include : {
             model : TypeDiet,
@@ -44,16 +44,42 @@ const getDbInfo = async () => {
     })
 }
 
-const   getAllRecipes = async() => {
+const   getAllRecipesId = async() => {
+    const apiInfo = await getApiById();
+    const dbInfo = await getDbInfoId()
+    const allInfo = apiInfo.concat(dbInfo);
+  console.log('yo soy ',alliInfo)
+    return allInfo;
+};
+
+/* const getApiById = async (id) => {
+    return await axios.get (`https://api.spoonacular.com/recipes/${id}/information?${API_KEY1}`)
+} */
+
+/* 
+const getDbById = async (id) => {
+    return await Recipe.findByPk(id, {
+        include: {
+            model: TypeDiet,
+            attributes: ['name'],
+            through: {
+                attributes: [],
+            }
+        }
+    });
+} */
+
+
+
+/* const   getAllRecipesId = async() => {
     const apiInfo = await getApiInfo();
     const dbInfo = await getDbInfo()
     const allInfo = apiInfo.concat(dbInfo);
    // console.log(apiInfo)
     return allInfo;
-};
-
-
+}; */
 module.exports= {
-    getAllRecipes,
-    
+ 
+    getAllRecipesId
+   
 }

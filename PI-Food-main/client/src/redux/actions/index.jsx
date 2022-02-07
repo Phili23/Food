@@ -13,29 +13,25 @@ export default function getFood() {
                 return err
             })
     }
-
 }
 
 
-export function foodName(title) {
-    console.log('yo soy el payload', title)
+export function foodName(name) {
+    console.log('yo soy el payload', name)
     return async function (dispatch) {
-        return axios.get('http://localhost:3001/Recipes?title=' + title)
+        return axios.get('http://localhost:3001/Recipes?name=' + name)
             .then((res) => {
                 dispatch({
                     type: 'FOOD_NAME',
                     payload: res.data
                 })
             })
-
     }
 }
-
+/*
 export function getDetail(id) {
-    console.log('yo soy id', id)
-    return async function (dispatch) {
-        console.log('yo soy id', id)
-        return axios
+     return async function (dispatch) {
+                return axios
             .get('http://localhost:3001/Recipes/' + id)
             .then((res) => {
                 dispatch({
@@ -44,16 +40,35 @@ export function getDetail(id) {
                 })
             })
     }
-}
+} 
 
-
-export function postFood(payload) {
-    return async function (dispatch) {
-        var json = await axios.post('http://localhost:3001/Recipes', payload)
-        return json;
+*/
+export function getDetail(id){
+         return async function(dispatch){
+        try {
+            var json =await axios.get('http://localhost:3001/Recipes/'+id)
+            console.log(json.data, 'hola json')
+             dispatch({
+                
+                type: 'GET_DETAILS',
+                payload:json.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
-/* 
+ 
+//agregar una receta
+export function  postFood(payload){
+    return async function (dispatch){
+        const response= await axios.post('http://localhost:3001/Recipes', payload);
+       
+        return response;
+    }
+}
+
+/*
     export function postFood(payload){
         console.log('yo soy id',payload)
         return async function(dispatch){
@@ -72,14 +87,18 @@ export function postFood(payload) {
 
 export function getTypes() {
     return async function (dispatch) {
+        try{
         return axios
             .get('http://localhost:3001/TypeDiets/')
             .then((res) => {
                 dispatch({
-                    type: 'GET_TYPEDIETS',
+                    type: 'GET_TYPE_DIETS',
                     payload: res.data
                 })
             })
+        } catch(err){
+            console.log(err)
+        }
     }
 }
 
@@ -88,26 +107,27 @@ export function recipesOrder(payload) {
     return {
         type: 'ORDER_RECIPES',
         payload
-
     }
-
 }
 
 export function healthOrder(payload) {
     return {
         type: 'ORDER_HEALTHSCORE',
         payload
-
     }
+}
 
+
+export function filterCreated(payload) {
+    return {
+        type: 'FILTER_CREATED',
+        payload
+    }
 }
 
 export function filterTypeDiets(payload) {
-    console.log('yo soy payload de filer', payload)
     return {
         type: 'FILTER_DIETS',
         payload
-
     }
-
 }
