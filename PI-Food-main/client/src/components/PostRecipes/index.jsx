@@ -1,3 +1,5 @@
+//https://github.com/santicardona04/PI-Food/blob/master/client/src/reducer/index.js
+
 import React, { useEffect, useState } from "react";
 import { getTypes, postFood } from '../../redux/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -95,8 +97,8 @@ export default function PostRecipes(params) {
                     <label className="style">Summary:  </label>
                     <input className=''
                         type="text"
-                        value={input.Summary}
-                        name="summary:"
+                        value={input.summary}
+                        name="summary"
                         placeholder='Summary...'
                         onChange={(e) => handleChange(e)}
                     />

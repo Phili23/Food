@@ -23,7 +23,7 @@ export default function Detail(props) {
        
        <div > 
            <Link to='/home'><button >Back to main Page </button> </Link>
-           <h1 > {detailsstate[0].title} </h1>
+           <h1 > {detailsstate[0].name} </h1>
            <img src={detailsstate[0].image ? detailsstate[0].image :'https://st.depositphotos.com/1036708/2191/i/600/depositphotos_21918797-stock-photo-knife-and-fork-with-plate.jpg'}/>
            <h3 >Type Diet: {detailsstate[0].typeDiets.map(t => t.name).join( ' , ')}</h3>
            {/* <h4 >Dish Type: {detailsstate[0].dishTypes ? detailsstate[0].dishTypes.map(d => d.name) :'dish type not found'  }</h4> */}
