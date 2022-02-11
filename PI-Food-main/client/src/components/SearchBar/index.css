@@ -59,6 +59,7 @@
     transition: .3s ease all ;
     border:1px solid  blue;
     box-sizing: border-box;
+    
   
 }
 .input2{
@@ -71,3 +72,37 @@
     box-sizing: border-box;
    }
   
+
+   .input4{
+    display: flex;
+    flex-direction: row;
+}
+
+.input4 button{
+    float: left;
+    width: 20%;
+    margin-left:150px;
+    padding: 10px;
+    background: #f6e5e9;
+        color: #214252;
+        font-size: 17px;
+        border: 1px solid #214252;
+        border-left: none;
+        cursor: pointer;   
+        border-radius: 30px;
+    }
+    .input4 button:hover{
+        opacity: 0.7;
+        background-color: #CE6262;
+        cursor:pointer;
+    }
+    .input4 input{
+    text-align: center;
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid #214252;
+        float: left;
+        width: 80%;
+        background: #FFF;
+        border-radius: 25px;
+    }

@@ -1,18 +1,41 @@
-import React, { useEffect } from 'react'
+import React, { useEffect , useState} from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getDetail } from '../../redux/actions';
+import LoaderHome from '../LoaderHome';
+import axios from "axios";
 import './index.css'
 export default function Detail(props) {
-
+    const [foodDetails, setFoodDetails] = useState(null);
     const dispatch = useDispatch()
     const { id } = useParams()   //la obtengo con este hook, porquue en el routa de mi App le especifico
 
     useEffect(() => {
         dispatch(getDetail(id));//traigo el estado detail
-    }, [id, dispatch])
+        return()=>{
+            setFoodDetails(null)
+        }
+    }, [])
+ 
+/* 
+    useEffect(() => {
+        axios.get(`http://localhost:3001/Recipes/${id}` )
+            .then((responseBack) => {
+                setFoodDetails(responseBack.data)
+            })
+
+            return() => {
+                setFoodDetails(null)   // CleanUp
+            }
+    }, [id]);
+ */
+
+
     const detailsstate = useSelector((state) => state.details)//le traigo desde el reducer
 
+    if (!detailsstate.length) {
+        return <LoaderHome />;
+    }
     return (
         <div className=''>
 
@@ -31,7 +54,7 @@ export default function Detail(props) {
                             <h5 className='recipe'>steps:<br />{Array.isArray(detailsstate[0].steps) ? detailsstate[0].steps.map(e => e.steps.map(f => f.step)) : detailsstate[0].steps}</h5>
                         </div>
                     </div> :
-                    <div> <h2> loading... </h2> </div>
+                    <div> <h2>  loading... </h2> </div>
 
             }
         </div>

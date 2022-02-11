@@ -133,10 +133,10 @@ export function filterTypeDiets(payload) {
 }
 
 
-export const resetAll = () => {
+export const loading = () => {
     return (dispatch) => {
       dispatch({
-        type: "RESET",
+        type: "LOADING",
       });
     };
   };

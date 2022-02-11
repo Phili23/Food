@@ -179,7 +179,7 @@ export default function PostRecipes(params) {
                         </div>
                     </div>
                     {
-                        errors.summary && <p>{errors.summary}</p>
+                        errors.summary && <p className="error">{errors.summary}</p>
                     }
 
                     <div className="">
@@ -193,7 +193,7 @@ export default function PostRecipes(params) {
                         />
                     </div>
                     {
-                        errors.steps && <p>{errors.steps}</p>
+                        errors.steps && <p className="error">{errors.steps}</p>
                     }
 
 

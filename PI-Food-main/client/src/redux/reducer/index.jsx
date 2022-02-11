@@ -2,7 +2,8 @@ const initialState = {
   foods: [],
   allFoods: [],
   details: [],
-  typed: []
+  typed: [],
+  loading: false
 }
 
 
@@ -107,13 +108,10 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         foods: action.payload === 'All' ? state.allFoods : createdFilter
       }
-      case "RESET":
+      case 'LOADING':
         return {
-          ...state,
-          foods: [],
-          allFoods: [],
-         
-         
+            ...state,
+            loading: true
         }
 
     case 'NEXT_PAGE': 

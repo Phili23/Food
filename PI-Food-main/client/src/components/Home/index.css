@@ -26,7 +26,10 @@
     }
       
     .butt{
-      font-family:'century Gothic', sans-serif;
+      list-style: none;
+      font-family: italic white;
+      font-style: oblique;
+      color: white;
       margin-top: 5px;
       border-radius: 10px;
       border-color:  green;
@@ -36,6 +39,8 @@
       background-color: transparent;
       font-size: 1rem;
       transition: box-shadow 0.2s ease-in-out;
+      font-weight:bold;
+      box-shadow: 0 0 40px rgb(2, 34, 44) inset;
    
     }
     
@@ -166,36 +171,46 @@
   
   .butt3{
     height: 40px;
-    font-family:'century Gothic', sans-serif;
-    margin-top: 5px;
-    border-radius: 8px;
+    list-style: none;
+    font-family: italic;
+    font-style: oblique;
+    margin-top: 2px;
+    border-radius: 3px;
     border-color: rgb(1, 26, 26);
     color: white;
     cursor: pointer;
-    padding:auto;
-    background-color: rgb(8, 66, 8);
+    padding:1px 2px;
+    background-color: transparent;
     font-size: 12px;
     transition: box-shadow 0.2s ease-in-out;
+    font-weight:bold;
+     box-shadow: 0 0 40px rgb(2, 34, 44) inset;
 }
 
 .butt3:hover{
-    /* color: #1883ba;
+    color: green;
     background-color: #fff;
-    border: 16px #1883ba; */
-    box-shadow: 0 0 40px rgb(106, 134, 134) inset;
+    color:rgb(215, 223, 215);
+      background-color: green;
+      border: 16px black;
+      box-shadow: 0 0 40px rgb(2, 34, 44) inset;
 }
 
 .titulos3{
-  font-family:'century Gothic', sans-serif;
+ /*  font-family:'century Gothic', sans-serif; */
+ list-style: none;
+ font-family: italic;
+ font-style: oblique;
  /*  margin-top: 5px; */
   border-radius: 3px;
   border-color:  green;
-  color: green;
+  color: white;
   cursor: pointer;
   padding: 0;
-  background-color: transparent;
+  background-color: green;
   font-size: 1rem;
   transition: box-shadow 0.2s ease-in-out;
+  font-weight:bold;
 
 }
 .titulos3:hover{
@@ -204,12 +219,14 @@
   color:blue;
   background-color:rgb(125, 160, 125);
   border: 16px rgb(125, 160, 125);
-  box-shadow: 0 0 40px rgb(2, 34, 44) inset;
+  box-shadow: 0 0 40px rgb(150, 155, 156) inset;
 }
 
 
 .titulos4{
-  font-family:'century Gothic', sans-serif;
+  list-style: none;
+  font-family: italic;
+  font-style: oblique;
  /*  margin-top: 5px; */
   border-radius: 3px;
   border-color:  green;
@@ -226,12 +243,13 @@
   font-weight:bold;
   border:1px solid;
   padding: 2px 8px;
+  font-weight:bold;
  
 }
 .titulos:hover{
   color:rgb(215, 223, 215);
   background-color: green;
-  border: 16px green;
+  border: 16px white;
   box-shadow: 0 0 40px rgb(2, 34, 44) inset;
 }
 
@@ -259,3 +277,4 @@
 .titulos:hover{
   color: teal;
 }
+

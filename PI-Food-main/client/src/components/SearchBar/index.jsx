@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { foodName } from "../../redux/actions";
+import { HiOutlineSearch } from 'react-icons/hi'
 import './index.css'
 
 
@@ -23,13 +24,13 @@ export default function SearchBar() {
 
     return (
         <div >
-            <input className="input2"
+            <input className=""
                 type='text'
                 placeholder="Buscar..." required
                 value={name}
                 onChange={(e) => { handleInputChange(e) }}
             />
-            <button className="butt" type="submit" onClick={(e) => { handleSubmit(e) }}>Search...</button>
+            <button type="submit" onClick={(e) => { handleSubmit(e) }}><HiOutlineSearch/></button>
         </div>
     )
 }

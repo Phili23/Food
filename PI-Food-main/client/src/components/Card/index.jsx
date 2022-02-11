@@ -14,10 +14,10 @@ export default function Card({ id, name, summary, spoonacularScore, healthScore,
          
            
             
-             <span> <h5 className="nameType"> Type of Diet:<br/>  {typeDiets} </h5></span>
+             <span> <h5 className="recipeType"> Type of Diet:<br/>  {typeDiets} </h5></span>
              
             
-             <span> <h6  className="nameHeals">HealthScore:  {healthScore}</h6></span>
+             <span> <h6  className="recipe">HealthScore:  {healthScore}</h6></span>
         </div>
         </div>
         </div>

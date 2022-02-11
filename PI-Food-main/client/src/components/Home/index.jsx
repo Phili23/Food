@@ -10,8 +10,11 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import getFood from "../../redux/actions";
-import { recipesOrder, healthOrder, filterTypeDiets, filterCreated, getTypes, } from "../../redux/actions";
+import { recipesOrder, healthOrder, filterTypeDiets, filterCreated, getTypes} from "../../redux/actions";
+import LoaderHome from "../LoaderHome";
 import Card from "../Card";
+
+
 import Paginado from "../Paginado";
 import SearchBar from "../SearchBar";
 import './index.css'
@@ -20,6 +23,7 @@ export default function Home() {
 
   const allFoods = useSelector(state => state.foods)
   const allTypes = useSelector(state => state.typed)
+  const loading=useSelector(state=>state)
 
 
   const dispatch = useDispatch(); //despachando las acciones
@@ -97,30 +101,36 @@ export default function Home() {
     setOrder(`Ordenado ${e.target.value}`)
   };
 
+  if (!allFoods.length) {
+    return <LoaderHome />;
+}
 
   return (
     <div>
-      <> <h1 className="title">Foods Recipes</h1></>
-      <>
+     {/*  <> <h1 className="title">Foods Recipes</h1></> */}
+      
+      {/* <>
         <Link to='/create'> <button className="butt">Create Food Recipe</button></Link>
-      </>
-      <>
+      </> */}
+      {/* <>
         <Link to='/'> <button className="butt">Back</button></Link>
-      </>
+      </> */}
+
+      <br/><br/><br/>
       <> <button className="butt" onClick={e => { handleClick(e) }}>Reload all Food Recipes</button></>
       <br />
-      <select className='' value={order} onChange={e => { handleRecipesOrder(e) }}>
+      <select className='titulos3' value={order} onChange={e => { handleRecipesOrder(e) }}>
         <option value="" > Sort by Recipe Name</option>
         <option value="asc">Ascendente</option>
         <option value="desc">Descendente</option>
       </select>
-      <select className='' value={order} onChange={e => { handleHealtOrder(e) }} >
+      <select className='titulos3' value={order} onChange={e => { handleHealtOrder(e) }} >
         <option value="x" >Sort ..By Recipes-healthScore</option>
         <option value="asc">Ascendente</option>
         <option value="desc">Descendente</option>
       </select>
 
-      <select className="" onChange={e => { handleDietsFilter(e) }} value={filter}>
+      <select className="titulos3" onChange={e => { handleDietsFilter(e) }} value={filter}>
         <option value='All'>Filter By TypeDiets</option>
         {allTypes.map((g, el) => <option key={el.id} value={g.name}>{g.name}</option>)}
 
@@ -139,23 +149,39 @@ export default function Home() {
         paginado={paginado} />
 
 
-      < button className="butt3" onClick={nextPage}>nexPage</button>
-      < button className="butt3" onClick={prevPage}>prevPage</button>
+      < button className="butt3" onClick={nextPage}>Next</button>
+      < button className="butt3" onClick={prevPage}>Prev</button>
 
       <br /><br />
       <SearchBar />
       <br />
       <div className='card-container12s'>
 
-        {currentFoods?.map((el) => {
+       {/*  {currentFoods?.map((el) => {
           return (
             <div key={el.id} className='starp' >
-              <Link to={'/home' + el.id} >
-                <Card name={el.name}
+              <Link to={'/home' + el.id} key={el.id}>
+                <Card
+                 name={el.name} key={el.id}
                   image={el.image ? el.image : <img src='https://i0.wp.com/revistadiners.com.co/wp-content/uploads/2020/07/portada_rutaazteca_1200x800.jpg?fit=1024%2C683&ssl=1' alt=" " />}
                   healthScore={el.healthScore}
                   typeDiets={el.typeDiets.map(e => e.name).join(' , ')} />
-              </Link>
+              </Link> */}
+
+                {
+                currentFoods?.map((el) => {
+                    return(
+                        <div  key={el.id} className='starp'>
+                            <Link to={'/home/' + el.id} style={{textDecoration:'none', color:'black'}} key={el.id} >
+                                <Card
+                                    key={el.id}
+                                    id={el.id}
+                                    name={el.name}
+                                    image={el.image ? el.image : <img src='https://i0.wp.com/revistadiners.com.co/wp-content/uploads/2020/07/portada_rutaazteca_1200x800.jpg?fit=1024%2C683&ssl=1' alt=" " />}
+                                    healthScore={el.healthScore}
+                                    typeDiets={el.typeDiets.map(e => e.name).join(' , ')} />
+                                
+                            </Link>
             </div>
           )
 
