@@ -5,16 +5,14 @@ import './index.css'
 export default function LandingPage() {
 
     return (
-        <div className="principal">
-            <div>
-                <h1 className="hladingp">Foods Recipes</h1><br />
-                <br /><br /><br /><br /><br /><br /><br />
-
-                <p className="ptexto">Quieres tener un  perro, pero no estás seguro de cuál es la raza adecuada para ti y tu familia? ¡Pues tenemos grandes noticias! Nuestra Biblioteca de razas te ayudará a comprender las distintas razas y a decidir qué tipo de perro podría ser tu mascota ideal. Para cada raza verás la estaura, peso y la personalidad, y el promedio de vida </p>
+        <div className="page">
+            <div><br /><br /><br /><br /><br />
+                <h1 className="ladingp">Foods Recipes</h1>
+                <p className="landingp">Welcome ! Find the best recipes according to your <br />preferences or diet, add your <br />favorite recipes and to share them with everyone!</p><br />
             </div>
             <div>
                 <Link to="/home">
-                    <button className="buts">Get into</button>
+                    <button className="butt1">Get into</button>
                 </Link>
             </div>
         </div>

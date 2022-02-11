@@ -43,27 +43,27 @@ export function getDetail(id) {
 } 
 
 */
-export function getDetail(id){
-         return async function(dispatch){
+export function getDetail(id) {
+    return async function (dispatch) {
         try {
-            var json =await axios.get('http://localhost:3001/Recipes/'+id)
+            var json = await axios.get('http://localhost:3001/Recipes/' + id)
             console.log(json.data, 'hola json')
-             dispatch({
-                
+            dispatch({
+
                 type: 'GET_DETAILS',
-                payload:json.data
+                payload: json.data
             })
         } catch (error) {
             console.log(error)
         }
     }
 }
- 
+
 //agregar una receta
-export function  postFood(payload){
-    return async function (dispatch){
-        const response= await axios.post('http://localhost:3001/Recipes', payload);
-       
+export function postFood(payload) {
+    return async function (dispatch) {
+        const response = await axios.post('http://localhost:3001/Recipes', payload);
+
         return response;
     }
 }
@@ -87,16 +87,16 @@ export function  postFood(payload){
 
 export function getTypes() {
     return async function (dispatch) {
-        try{
-        return axios
-            .get('http://localhost:3001/TypeDiets/')
-            .then((res) => {
-                dispatch({
-                    type: 'GET_TYPE_DIETS',
-                    payload: res.data
+        try {
+            return axios
+                .get('http://localhost:3001/TypeDiets/')
+                .then((res) => {
+                    dispatch({
+                        type: 'GET_TYPE_DIETS',
+                        payload: res.data
+                    })
                 })
-            })
-        } catch(err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -131,3 +131,32 @@ export function filterTypeDiets(payload) {
         payload
     }
 }
+
+
+export const resetAll = () => {
+    return (dispatch) => {
+      dispatch({
+        type: "RESET",
+      });
+    };
+  };
+
+export function nextPage() {
+    return {
+        type: 'NEXT_PAGE'
+    }
+}
+
+
+
+export function mostrarAlerta(msg, categoria) {
+
+    return function (dispatch) {
+        dispatch({
+            type: 'MOSTRAR_ALERTA',
+            payload: msg, categoria
+        });
+    };
+};
+
+

@@ -31,20 +31,20 @@ export default function rootReducer(state = initialState, action) {
       }
 
     case 'FILTER_DIETS':
-      
+
       const allRec = state.allFoods
       // const allRec = state.recipes
       console.log(allRec);
-      
-      const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typeDiets.find(e =>  e.name  === action.payload ) )   
+
+      const typeDietFilter = action.payload === 'All' ? allRec : allRec.filter(t => t.typeDiets.find(e => e.name === action.payload))
       console.log(action.payload);
-      
-      return{
-              ...state ,
-              foods : typeDietFilter
+
+      return {
+        ...state,
+        foods: typeDietFilter
 
       }
-  // }})
+    // }})
     case 'GET_TYPE_DIETS':
       return {
         ...state,
@@ -107,7 +107,33 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         foods: action.payload === 'All' ? state.allFoods : createdFilter
       }
+      case "RESET":
+        return {
+          ...state,
+          foods: [],
+          allFoods: [],
+         
+         
+        }
 
+    case 'NEXT_PAGE': 
+      return {
+        ...state,
+        foods: action.payload
+
+      };
+
+    case 'PREV_PAGE':
+      return {
+        ...state,
+        foods: action.payload
+
+      }
+
+    case 'MOSTRAR_ALERTA': {
+      return state
+
+    }
     default:
       return state;
   }

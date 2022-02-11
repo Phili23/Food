@@ -12,17 +12,18 @@ const router = Router();
 router.get('/',async(req,res)=>{
   try {
       const {name}=req.query;
-      console.log('yo soy title',name)
-      const foodsTotal=await getAllRecipes();
+      console.log('yo soy dogstotal', name)
+      const dogsTotal=await getAllRecipes(name);
+      console.log('yo soy dogstotal', dogsTotal)
       if(name){
-        let foodName=await foodsTotal.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()))
-        foodName.length? 
-        res.status(200).send(foodName):
+        let dogsName=await dogsTotal.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()))
+        dogsName.length? 
+        res.status(200).send(dogsName):
         res.status(404).send("Lo siento, no se encontro el Perrito Buscado");
          }  
          else{
            
-             res.status(200).send(foodsTotal)
+             res.status(200).send(dogsTotal)
             }; 
   } catch (error) {
       console.log("Se encontro una falla en el get /dogs", error)
@@ -31,6 +32,7 @@ router.get('/',async(req,res)=>{
         
     });
 
+    
     //busqueda por id
 
 
@@ -129,43 +131,89 @@ router.delete('/delete/:id', async (req, res) => {
 });
 
 
-// por tipode Dieta
-/*
-{
+/* 
+const getApiByName = async (name) => {
+           
+  try{
+      const resAxios = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?query=${name}&addRecipeInformation=true&number=10&apiKey=${API_KEY}`);
+      const { results } = resAxios.data;
+      if(results.length > 0){
+          let response = results?.map((el) => {
+              return {
+                  id:el.id,
+                  name:el.title,
+                  summary:el.summary,
+                  spoonacularScore:el.spoonacularScore,
+                  healthScore:el.healthScore,
+                  image:el.image,
+                  typeDiets: el.diets.map((d)=> {return{name:d}}),
+                  steps: (el.analyzedInstructions[0] && el.analyzedInstructions[0].steps?el.analyzedInstructions[0].steps.map(item=>item.step).join(" \n"):'')
+              }
+          })
+    return response           
+  }
 
-  "name": "Cauliflower, Brown Rice, and Vegetable Fried Rice",
-  "summary": "Cauliflower, Brown Rice, and Vegetable Fried Rice might be a good recipe to expand your side dish recipe box. Watching your figure? This gluten free, dairy free, lacto ovo vegetarian, and vegan recipe has <b>192 calories</b>, <b>7g of protein</b>, and <b>6g of fat</b> per serving. For <b>$1.12 per serving</b>, this recipe <b>covers 19%</b> of your daily requirements of vitamins and minerals. This recipe serves 8. This recipe from fullbellysisters.blogspot.com has 3689 fans. This recipe is typical of Chinese cuisine. ",
-  "spoonacularScore": "100",
-  "healthScore": "76",
-  "image": "https://spoonacular.com/recipeImages/716426-312x231.jpg",
-  
-  "diets": [
-   "gluten free",
-  
-   "dairy free",
-  
-  
-  "lacto ovo vegetarian",
-  
-   "vegan"
-  
-  ],
-  
-  "steps": [
-  
-  
-  
-   "Remove the cauliflower's tough stem and reserve for another use. Using a food processor, pulse cauliflower florets until they resemble rice or couscous. You should end up with around four cups of "
-  ,
-  
-   "Heat 1T butter and 1T oil in a large skillet over medium heat."]
-   }*/
-  
-  
+  else{
+      console.log("NO hay coincidencia en la API");
+      //return ('error');
+  }
 
- 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
+  }catch (error) {
+      console.error(error);
+      return ('error')
+  }
+}
 
+//!                   5
+const getDBByName = async (name) => {
+  try{
+      const DBInfo = await getDBInfo();
+      const filtByName = DBInfo.filter(e=>e.name.toLowerCase().includes(name.toLowerCase()));
+     
+      return filtByName;
+  }catch (error) {
+      return ('error')
+  } 
+}
+//!                   6     
+const getInfoByName = async (name) => {
+  try{
+      const apiByName = await getApiByName(name)
+      const DBByName = await getDBByName(this.name)
+      const infoTotal = apiByName.concat(DBByName)
+      return infoTotal
+  }catch (error) {
+      return ('error')
+  }
+}     
+
+//^       
+1
+router.get('/Name', async (req, res) => {
+
+const { name } = req.query
+
+if (name) {
+
+  const infoByName = await getInfoByName(name);
+  if (infoByName !== 'error'){
+      console.log("Se encontro coincidencia con name")
+      infoByName.length > 0 ? res.json(infoByName) : res.status(400).json([{ name: 'not found any recipes'}]);
+  }else{
+      console.log("Error")
+      res.status(404).json([{ name: 'Error'}])
+  }
+
+}else{
+ // para no confundir a home, si no hay un name de busqueda muestra toda la info.
+  const allDate = await getAllInfo() 
+  if (allDate !== 'error'){  
+      res.json(allDate);
+  }else{
+      res.status(404).json({message:'Error en la búsqueda de datos'})
+  }
+
+}
+}); */
 
 module.exports = router;

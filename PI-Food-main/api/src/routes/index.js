@@ -6,6 +6,7 @@ const TypeDietsRoute=require('./TypeDiets')
 
 const router = Router();
 router.use('/Recipes', recipeRoute)
+router.use('/name', recipeRoute)
 router.use('/TypeDiets', TypeDietsRoute)
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);

@@ -10,7 +10,7 @@ const {temps} = require('../controllers/jsonDiets');
 
 
 const  getApiInfo=async()=>{
-    let apiUrlOne=await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=10&addRecipeInformation=true`)
+    let apiUrlOne=await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=200&addRecipeInformation=true`)
     console.log(apiUrlOne)
      
    const apiInfo=await apiUrlOne.data.results.map(el=>{

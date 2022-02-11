@@ -1,19 +1,26 @@
 import React from "react";
+import './index.css'
 
 
 export default function Card({ id, name, summary, spoonacularScore, healthScore, image, typeDiets, steps, created }) {
 
     return (
-        <div>
-            <div key={id}>
-                <img src={image} alt="img not found" width="350px" height="250px" />
-                <h5> Name <br />{name}</h5>
-            </div>
+        <div className="">
+            <div key={id} className="">
+          <span className="">{image ? <img className="imga" src={image} alt="not found" /> : <img className="imga1"  src='https://i0.wp.com/revistadiners.com.co/wp-content/uploads/2020/07/portada_rutaazteca_1200x800.jpg?fit=1024%2C683&ssl=1' alt=" " width="100px" alt="not found" />}<br/></span> 
+                
+           <div className=''>
+              <span className="nameFood"> <h5>  <br />{name}</h5></span><br/>
+         
            
-              {/*   <h6>Diets: <br />{typeDiets}</h6></div> */}
-              <h5> Diet </h5>  {typeDiets} 
             
-                <h6>HealthScore: <br />{healthScore}</h6>
+             <span> <h5 className="nameType"> Type of Diet:<br/>  {typeDiets} </h5></span>
+             
+            
+             <span> <h6  className="nameHeals">HealthScore:  {healthScore}</h6></span>
         </div>
+        </div>
+        </div>
+
     )
 }

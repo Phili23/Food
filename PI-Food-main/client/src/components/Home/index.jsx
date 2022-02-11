@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import getFood from "../../redux/actions";
-import { recipesOrder, healthOrder,  filterTypeDiets, filterCreated, getTypes } from "../../redux/actions";
+import { recipesOrder, healthOrder, filterTypeDiets, filterCreated, getTypes, } from "../../redux/actions";
 import Card from "../Card";
 import Paginado from "../Paginado";
 import SearchBar from "../SearchBar";
@@ -20,9 +20,11 @@ export default function Home() {
 
   const allFoods = useSelector(state => state.foods)
   const allTypes = useSelector(state => state.typed)
- 
+
 
   const dispatch = useDispatch(); //despachando las acciones
+
+
   const [order, setOrder] = useState('');
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1)
@@ -36,6 +38,20 @@ export default function Home() {
     setCurrentPage(pageNumber);
   };
 
+  const nextPage = () => {
+    console.log('yo soy', allFoods.length)
+    console.log('yo soy current Page', currentPage)
+    if (allFoods.length > currentPage + 9) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+
+  const prevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
   useEffect(() => {
     dispatch(getFood())
   }, [dispatch])
@@ -64,7 +80,7 @@ export default function Home() {
     setOrder(`Ordenado ${e.target.value}`)
   }
 
-  
+
 
   function handleDietsFilter(e) {
     e.preventDefault();
@@ -81,18 +97,17 @@ export default function Home() {
     setOrder(`Ordenado ${e.target.value}`)
   };
 
-  
 
   return (
     <div>
-      <> <h1>FOODS</h1></>
+      <> <h1 className="title">Foods Recipes</h1></>
       <>
-        <Link to='/create'> <button>Create Food Recipe</button></Link>
+        <Link to='/create'> <button className="butt">Create Food Recipe</button></Link>
       </>
       <>
-        <Link to='/'> <button>Back</button></Link>
+        <Link to='/'> <button className="butt">Back</button></Link>
       </>
-      <> <button onClick={e => { handleClick(e) }}>Reload all Food Recipes</button></>
+      <> <button className="butt" onClick={e => { handleClick(e) }}>Reload all Food Recipes</button></>
       <br />
       <select className='' value={order} onChange={e => { handleRecipesOrder(e) }}>
         <option value="" > Sort by Recipe Name</option>
@@ -111,7 +126,7 @@ export default function Home() {
 
 
       </select>
-      <select className='titulos' value={order} onChange={e => handleFilterCreated(e)}>
+      <select className='titulos3' value={order} onChange={e => handleFilterCreated(e)}>
         <option >Filter By Origin</option>
         <option value='All'>All Recipes</option>
         <option value='created'>My Recipes</option>
@@ -123,30 +138,36 @@ export default function Home() {
         allFoods={allFoods.length}
         paginado={paginado} />
 
+
+      < button className="butt3" onClick={nextPage}>nexPage</button>
+      < button className="butt3" onClick={prevPage}>prevPage</button>
+
+      <br /><br />
       <SearchBar />
+      <br />
       <div className='card-container12s'>
 
-        {
-          currentFoods?.map((el) => {
-            return (
-              <Link to={'/home' + el.id} key={el.id} >
+        {currentFoods?.map((el) => {
+          return (
+            <div key={el.id} className='starp' >
+              <Link to={'/home' + el.id} >
                 <Card name={el.name}
                   image={el.image ? el.image : <img src='https://i0.wp.com/revistadiners.com.co/wp-content/uploads/2020/07/portada_rutaazteca_1200x800.jpg?fit=1024%2C683&ssl=1' alt=" " />}
                   healthScore={el.healthScore}
                   typeDiets={el.typeDiets.map(e => e.name).join(' , ')} />
-                
-            
               </Link>
-            )
-          })
+            </div>
+          )
+
+        })
         }
+
       </div>
     </div>
   )
 }
 
+/*  {currentFoods[0].diets ? currentFoods[0].typeDiets.map(d => d.name) :'dish type not found'  } */
 
-    
-             /* image={c.img? c.img:c.image} typeDiets */
-              /**img cosas de la api...back image diets */
-               
+/* image={c.img? c.img:c.image} typeDiets */
+/**img cosas de la api...back image diets */

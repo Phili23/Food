@@ -10,14 +10,14 @@ export default function Paginado({foodPerPage, allFoods, paginado}){
    }
    return(
        
-           <div className="pagination" >
-            <ul className='ul' >
+           <div className="" >
+            <ul className='' >
                            { pageNumbers && 
                pageNumbers.map(number=>(
                    <span key={number}>
 
                                      
-                <button className="button" onClick={()=> paginado(number)}>{number}</button>
+                <button className="butt" onClick={()=> paginado(number)}>{number}</button>
                              
                
                 </span>
