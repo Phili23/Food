@@ -1,61 +1,43 @@
-/* https://app-food.vercel.app/food/home */
-/* https://github.com/Dufainder/PI-Food */
 
-/*
-{currentFoods[0].diets ? currentFoods[0].diets.map(el => el.name) : currentFoods[0].typeDiets.map((el, index) => <p key={index} >{el.name ? el.name : el}</p>)} */
-//{currentFoods[0].typeDiets ? currentFoods[0].typeDiets.map(el => el.name) : currentFoods[0].diets.map((el, index) => <p key={index} >{el.name ? el.name : el}</p>)} */
-//typeDiets=  { currentFoods[0].diets? currentFoods[0].diets.map(el =>< p key={index} el.name)></p>: currentFoods[0].typeDiets.map((el, index)=> <p key={index} >{el.name ? el.name : el}</p>)} */
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import getFood from "../../redux/actions";
-import { recipesOrder, healthOrder, filterTypeDiets, filterCreated, getTypes} from "../../redux/actions";
+import { recipesOrder,deleteDbFood, healthOrder, filterTypeDiets, getTypes,filterCreated,SpooOrder } from "../../redux/actions";
 import LoaderHome from "../LoaderHome";
+import NavBar from '../NavBar/NavBar'
 import Card from "../Card";
-
-
 import Paginado from "../Paginado";
-import SearchBar from "../SearchBar";
+import { GrCaretNext, GrCaretPrevious, GrChapterNext, GrChapterPrevious } from "react-icons/gr";
 import './index.css'
 
-export default function Home() {
+export default function Home(created) {
 
   const allFoods = useSelector(state => state.foods)
-  const allTypes = useSelector(state => state.typed)
-  const loading=useSelector(state=>state)
+  const allTypes = useSelector(state => state.typed)//mapStateToProps conecta la acciones/extrae datos del store /funciones puras
 
 
-  const dispatch = useDispatch(); //despachando las acciones
-
+  const dispatch = useDispatch(); //retorna la función dispatch del almacén de Redux con la cual se pueden emitir acciones.
+ const id=useParams()
 
   const [order, setOrder] = useState('');
   const [filter, setFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1)
+  //eslint-disable-next-line
   const [foodPerPage, setFoodPerPage] = useState(9)
-  const indexOfLastFood = currentPage * foodPerPage//
+
+
+  const indexOfLastFood = currentPage * foodPerPage//recetas por pagina
   const indexOfFirstFood = indexOfLastFood - foodPerPage;//0
 
   const currentFoods = allFoods.slice(indexOfFirstFood, indexOfLastFood)
+
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const nextPage = () => {
-    console.log('yo soy', allFoods.length)
-    console.log('yo soy current Page', currentPage)
-    if (allFoods.length > currentPage + 9) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-
-
-  const prevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
   useEffect(() => {
     dispatch(getFood())
   }, [dispatch])
@@ -85,6 +67,13 @@ export default function Home() {
   }
 
 
+  function handleSpooOrder(e) {
+    e.preventDefault();
+    dispatch(SpooOrder(e.target.value))
+    setCurrentPage(1)
+    setOrder(`Ordenado ${e.target.value}`)
+  }
+
 
   function handleDietsFilter(e) {
     e.preventDefault();
@@ -92,7 +81,7 @@ export default function Home() {
     dispatch(filterTypeDiets(e.target.value))
     setCurrentPage(1)
     setFilter(`Filtrado ${e.target.value}`)
-  }
+  };
 
   function handleFilterCreated(e) {
     e.preventDefault()
@@ -101,22 +90,28 @@ export default function Home() {
     setOrder(`Ordenado ${e.target.value}`)
   };
 
-  if (!allFoods.length) {
-    return <LoaderHome />;
+
+
+  
+  function handleDeleteRecipe(e) {
+    e.preventDefault()
+    
+    dispatch(deleteDbFood(id))
+    dispatch(getFood())
+        .then(() => {
+            alert("Executed")
+        })
 }
+
+  if (!allFoods.length) {
+    return <LoaderHome className='loader-home' />;
+  }
 
   return (
     <div>
-     {/*  <> <h1 className="title">Foods Recipes</h1></> */}
-      
-      {/* <>
-        <Link to='/create'> <button className="butt">Create Food Recipe</button></Link>
-      </> */}
-      {/* <>
-        <Link to='/'> <button className="butt">Back</button></Link>
-      </> */}
-
-      <br/><br/><br/>
+      <NavBar />
+     
+      <br /><br /><br />
       <> <button className="butt" onClick={e => { handleClick(e) }}>Reload all Food Recipes</button></>
       <br />
       <select className='titulos3' value={order} onChange={e => { handleRecipesOrder(e) }}>
@@ -129,13 +124,13 @@ export default function Home() {
         <option value="asc">Ascendente</option>
         <option value="desc">Descendente</option>
       </select>
-
-      <select className="titulos3" onChange={e => { handleDietsFilter(e) }} value={filter}>
-        <option value='All'>Filter By TypeDiets</option>
-        {allTypes.map((g, el) => <option key={el.id} value={g.name}>{g.name}</option>)}
-
-
+      
+      <select className='titulos3' value={order} onChange={e => { handleSpooOrder(e) }} >
+        <option value="x" >Sort ..By Recipes-SpoonacularScore</option>
+        <option value="asc">Ascendente</option>
+        <option value="desc">Descendente</option>
       </select>
+
       <select className='titulos3' value={order} onChange={e => handleFilterCreated(e)}>
         <option >Filter By Origin</option>
         <option value='All'>All Recipes</option>
@@ -143,52 +138,56 @@ export default function Home() {
         <option value='Api'>Api Recipes</option>
       </select>
 
+
+
+      <select className="titulos3" onChange={e => { handleDietsFilter(e) }} value={filter}>
+        {/*  <option value="foods" key="foods">Foods</option> */}
+        <option value='All' key="all">Filter By TypeDiets</option>
+        {allTypes.map((g) => <option key={g.name} value={g.name}>{g.name}</option>)}
+
+
+      </select>
+
+
       <Paginado
         foodPerPage={foodPerPage}
         allFoods={allFoods.length}
         paginado={paginado} />
 
+ <button type="button" onClick={() => setCurrentPage(1)}><GrChapterPrevious /></button>
+ <button type="button" onClick={() => currentPage === 1 ? setCurrentPage(currentPage) : setCurrentPage(parseInt(currentPage) - 1)}><GrCaretPrevious /></button>
+ <button type="button" onClick={() => currentPage === foodPerPage ? setCurrentPage(currentPage) : setCurrentPage(parseInt(currentPage) + 1)}><GrCaretNext /></button>
+ <button type="button" onClick={() => setCurrentPage(foodPerPage)}><GrChapterNext /></button>
+     {/*  < button className="butt3" onClick={nextPage}>Next</button>
+      < button className="butt3" onClick={prevPage}>Prev</button> */}<br/>
 
-      < button className="butt3" onClick={nextPage}>Next</button>
-      < button className="butt3" onClick={prevPage}>Prev</button>
-
-      <br /><br />
-      <SearchBar />
-      <br />
       <div className='card-container12s'>
 
-       {/*  {currentFoods?.map((el) => {
+        {currentFoods?.map((el) => {
           return (
-            <div key={el.id} className='starp' >
+            <div className='starp' key={el.id} >
               <Link to={'/home' + el.id} key={el.id}>
                 <Card
-                 name={el.name} key={el.id}
+                  key={el.id}
+                  name={el.name}
                   image={el.image ? el.image : <img src='https://i0.wp.com/revistadiners.com.co/wp-content/uploads/2020/07/portada_rutaazteca_1200x800.jpg?fit=1024%2C683&ssl=1' alt=" " />}
                   healthScore={el.healthScore}
-                  typeDiets={el.typeDiets.map(e => e.name).join(' , ')} />
-              </Link> */}
-
-                {
-                currentFoods?.map((el) => {
-                    return(
-                        <div  key={el.id} className='starp'>
-                            <Link to={'/home/' + el.id} style={{textDecoration:'none', color:'black'}} key={el.id} >
-                                <Card
-                                    key={el.id}
-                                    id={el.id}
-                                    name={el.name}
-                                    image={el.image ? el.image : <img src='https://i0.wp.com/revistadiners.com.co/wp-content/uploads/2020/07/portada_rutaazteca_1200x800.jpg?fit=1024%2C683&ssl=1' alt=" " />}
-                                    healthScore={el.healthScore}
-                                    typeDiets={el.typeDiets.map(e => e.name).join(' , ')} />
-                                
-                            </Link>
+                  spoonacularScore={el.spoonacularScore}
+                  typeDiets={el.typeDiets.map(e => e.name).join(' , ')}
+                  created={el.created} />
+              </Link><br/>
+           {/*    < button className="butt3">Delete</button> 
+              
+              < button className="butt3">Update</button>  */}
             </div>
           )
 
         })
+        
         }
 
       </div>
+     
     </div>
   )
 }

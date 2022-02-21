@@ -10,7 +10,7 @@ const {temps} = require('../controllers/jsonDiets');
 
 
 const  getApiInfo=async()=>{
-    let apiUrlOne=await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=200&addRecipeInformation=true`)
+    let apiUrlOne=await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&number=100&addRecipeInformation=true`)
     console.log(apiUrlOne)
      
    const apiInfo=await apiUrlOne.data.results.map(el=>{
@@ -23,12 +23,7 @@ const  getApiInfo=async()=>{
         image:el.image,
         typeDiets: el.diets.map((d)=> {return{name:d}}),
         steps: (el.analyzedInstructions[0] && el.analyzedInstructions[0].steps?el.analyzedInstructions[0].steps.map(item=>item.step).join(" \n"):'')
-         /*typeDiets: el.typeDiets.map(el => el.name)*/
-       /*   steps: el.analyzedInstructions[0]?.steps.map(e => {
-           return {
-                  step: e.step
-           }
-       }) */
+        
     }})
    console.log('yo soy apiInfo',apiInfo)
     return apiInfo;

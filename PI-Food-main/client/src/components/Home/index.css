@@ -4,13 +4,23 @@
     grid-column-gap: 20px;
     grid-row-gap: 50px;
     padding: 0px 10px 0px 20px;
-    
+    border:red;
     backdrop-filter:blur(7.5px); 
     display: flex;
     flex-wrap: wrap;
     align-items: center;
   justify-content: space-around;
     
+    }
+
+    .card-containers12:hover{
+      box-shadow: 10px 1px 20px teal;  
+      transform: translateY(-50%);
+      -webkit-box-shadow: 16px 27px 38px -3px teal;
+      -moz-box-shadow: 16px 27px 38px -3px teal;
+      box-shadow: 16px 27px 38px -3px teal;
+        
+      
     }
     .aline{
       text-align: center; 
@@ -21,8 +31,16 @@
       height: auto;
       margin: 20px 0px 0px 0px;
       border-radius: 4px;
-      box-shadow: 4px 4px 10px 10px rgba(0, 0, 0, 0.55); 
+      box-shadow: 4px 4px 10px 10px teal; 
       box-sizing: border-box;   
+    }
+
+    
+    .imga:hover{
+      color:rgb(215, 223, 215);
+      background-color: green;
+      border: 16px green;
+      box-shadow: 0 0 50px  teal inset;
     }
       
     .butt{
@@ -64,26 +82,29 @@
   }
 
   .card-containers {
-    margin-left: 2px; 
+   
     flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-right: 2px; 
+    margin-right: 10px; 
+    margin-left: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
     display:flex;
     text-align: center;
     justify-content:center;
     display:flex;
     order:1;
-    width: 200px;
+    width: 328px;
     height: auto;
     border-radius:8px;
-    border: 0.5px solid gray;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.2);
+    border: 0.5px solid rgb(10, 163, 252);
+    box-shadow: 0 2px 2px teal;
     overflow: hidden;
    
     text-align: center;
     transition: all 0.25s;
     transform: translateY(-1px);
-    box-shadow: 5px 1px 5px rgba(0,0,0,0.2);
+    box-shadow: 5px 1px 5px teal;
     display: flex;
     opacity: 1;
     transform: translate(0);
@@ -98,29 +119,25 @@
     font-family: 'Quicksand', sans-serif;
     transition: all 250ms ease;
     flex-direction:column;
-    backdrop-filter:blur(7.5px);
-    
-   
-    
+    backdrop-filter:blur(7.5px);   
   }
   
   
   .card-containers:hover{
-    box-shadow: 10px 1px 20px rgba(0,0,0,0.8);  
+    box-shadow: 10px 1px 20px white;  
     transform: translateY(-50%);
     -webkit-box-shadow: 16px 27px 38px -3px rgba(13,1,1,1);
     -moz-box-shadow: 16px 27px 38px -3px rgba(13,1,1,1);
-    box-shadow: 16px 27px 38px -3px rgba(13,1,1,1);
+    box-shadow: 16px 27px 38px -3px white;
       
     
   }
 
-  .card {
-	
-    border: 1px solid rgba(45, 0, 75, 0.489);
+  .card {	
+    border: 1px solid white;
     border-radius: 10px;
     background-color: rgba(55, 0, 71, 0.09);
-    box-shadow: 2px 2px 40px rgba(31, 0, 66, 0.733);
+    box-shadow: 2px 2px 40px white;
     width: 300px;
     height: 250px;
     margin-top: 5px;
@@ -160,13 +177,11 @@
   }
   
   .nameFood {
-    
-      text-align: center;
+       text-align: center;
        height: 20px;
        text-decoration: none;
        padding: 0 1px 0 1px;
-       font-size: 16px;
-    
+       font-size: 16px;    
   }
   
   .butt3{
@@ -176,8 +191,8 @@
     font-style: oblique;
     margin-top: 2px;
     border-radius: 3px;
-    border-color: rgb(1, 26, 26);
-    color: white;
+    border-color: teal;
+    color:#fff;
     cursor: pointer;
     padding:1px 2px;
     background-color: transparent;
@@ -203,7 +218,7 @@
  font-style: oblique;
  /*  margin-top: 5px; */
   border-radius: 3px;
-  border-color:  green;
+  border-color:  black;
   color: white;
   cursor: pointer;
   padding: 0;

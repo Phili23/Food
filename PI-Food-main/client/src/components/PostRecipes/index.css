@@ -24,16 +24,20 @@
 
 
 .input{
+    font-family: italic;
+    font-style: oblique;
+    color:black ;
     margin-bottom: 8px;
     width:100%;
-    background: rgb(196, 136, 25);
+    background: rgb(238, 219, 184);
     border-radius: 3px;
     height: auto;
-    line-height: 5px;
+    line-height : 25px;
     padding: 0 20px 0 10px;
     transition: .3s ease all ;
     border:3px solid transparent;
-    padding: 7px;
+   
+  
     box-sizing: border-box;
   
 }
@@ -44,15 +48,41 @@
    }
 
 
+   .inputp{
+    margin-bottom: 8px;
+    width:30%;
+    background: rgb(238, 219, 184);
+    border-radius: 3px;
+    height: auto;
+    line-height: 5px;
+    padding: 0 20px 0 10px;
+    transition: .3s ease all ;
+    border:3px solid transparent;
+    padding: 7px;
+    text-indent: 2em;
+    font-size: 14px;
+    box-sizing: border-box;
+   
+  
+}
+.inputp:focus{
+    border:7px solido black ;  
+    outline: none;/*quita el subrayado*/
+    box-shadow: 6px 0px 30px red ;
+   }
+
    
 
 .input1{
     width: 45%;
     padding: 7px;
-    background: rgb(198, 212, 198);
+    background:  rgb(238, 219, 184);
     border-radius: 3px;
     height: auto;
     font-size: 24 red;
+    font-family: italic;
+    font-style: oblique;
+    color:black ;
     line-height: 5px;
     padding: auto;
     transition: .3s ease all ;
@@ -69,7 +99,7 @@
   
    .formulario{
        display: grid;
-       grid-template-columns: 1fr  ;
+       grid-template-columns: 1fr 1fr  ;
        gap: 20px;/*separacion de columnas*/
        @medi(max-width:800px) {
            grid: template columns 1fr;
@@ -83,6 +113,8 @@
        padding:5px;
        min-height: 20px;
        cursor:pointer;
+       color: green;
+      /*  color:cornsilk; */
    }
 
    .contenedorBoton{
@@ -112,9 +144,16 @@
        }
 
 
+       .btn5{
+    
+        background-color: rgb(2, 36, 36);
+        color: aqua;
+       
+        
+      }
    .p{
        font-size: 14px;
-       color:rgb(53, 49, 56);
+       color:aqua;
        display: none;
    }
 
@@ -155,30 +194,37 @@
 
   .creater-form{
     margin-top: 5px;
-   
+    order:1;
     display:flex;
     flex-direction: column;
-    width: 450px;
+    width: 28em;
     padding-bottom: 10px;
     font-family: italic;
     font-style: oblique;
     font-weight: bold;
     border-radius: 3px;
-    color: #080808;
+    color: blue;
     text-decoration: none;
     font-size: 15px;
     justify-content: center;
     box-sizing: border-box;
 }
-
+ .pe{
+    color:aqua;
+ }
 .creater{
-    margin-top: 5px;
     display:flex;
-    flex-wrap:wrap ;
-    align-items: center;
-    flex-direction: column;
+  
     justify-content: center;
-    width: 50%;
+    align-items: center;
+   /*  margin-top: 55px; */
+    flex-wrap:wrap ;
+    justify-content: center;
+    align-items: center;
+    /*  flex-direction: column; */
+   
+     width: 40%; 
+  /*  width:30.625em ; */
     /*background-color: #AF2D2D;*/
     opacity: 0.8; margin:auto;
     /* margin: 150px 0px 50px 25% ; */
@@ -186,15 +232,16 @@
     font-style: oblique;
     font-weight: bold;
     border: 10px;
-    color: #080808;
+    color: #f1f0f0;
     font-size: 18px;
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.5);
-    color: #0e0b0b; 
+    color: #ece8e8; 
     border-radius: 8px;
-    border:solid rgba(0, 0, 0, 0.2) 6px;
+    border:solid gray 6px;
     box-shadow: 0px 14px 80px rgba(0, 0, 0, 0.85);
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     box-sizing: border-box;
+    background-color: black;
     background-size: 100vw 100vh;
 }
 @media(max-width:480px){
@@ -208,6 +255,13 @@
         width: 100%;
     }
   }
+
+/*   .creater:hover{
+    color:rgb(215, 223, 215);
+   background-color: green;
+   border: 16px #131516;
+   box-shadow: 0 0 40px rgb(2, 34, 44) inset;
+    c*/
   .puntu{
       width: 20%;
 
@@ -216,9 +270,10 @@
     gap: 20px;/*separacion de columnas*/
     @media(max-width:800px) {
         grid: template columns 1fr;
+        
+
         justify-content: center;
-
-
+        align-items: center;
         margin-bottom: 8px;
         width:50%;
         background: rgb(196, 136, 25);
@@ -247,5 +302,83 @@
     font-family: 'Benne', serif;
     color: red;
     font-size: 14px;
-    background: rgba(4, 238, 16, 0.2);
+    background:white;
 }
+
+
+.input5{
+    width: 45%;
+    padding: 7px;
+    background: rgb(198, 212, 198);
+    border-radius: 3px;
+    height: auto;
+    font-size: 24 red;
+    line-height: 5px;
+    padding: auto;
+    transition: .3s ease all ;
+    border:3px solid transparent;
+    box-sizing: border-box;
+  
+}
+
+.butt1{
+    margin-top: 40px;
+    height: 40px;
+    font-family: italic;
+    font-style: oblique;
+    margin-top: 5px;
+    border-radius: 10px;
+    border-color:  green;
+    color: green;
+    cursor: pointer;
+    padding: 10px;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: box-shadow 0.2s ease-in-out;
+    box-shadow: 0 0 40px rgb(2, 34, 44) inset;
+    font-weight:bold;
+  }
+  
+  .butt1:hover{
+     color:rgb(215, 223, 215);
+    background-color: green;
+    border: 16px #131516;
+    box-shadow: 0 0 40px rgb(2, 34, 44) inset;
+    cursor:pointer;
+  }
+  
+
+  
+.creater1{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap:wrap ;
+    justify-content: center;
+    align-items: center;
+    /*  flex-direction: column; */
+    justify-content: center;
+ 
+  /*  width:30.625em ; */
+    /*background-color: #AF2D2D;*/
+  /*   opacity: 0.8; margin:auto; */
+    /* margin: 150px 0px 50px 25% ; */
+    font-family: italic;
+    font-style: oblique;
+    font-weight: bold;
+    border: 10px;
+    color:white;
+    font-size: 18px;
+  /*   -webkit-text-stroke: 1px aqua; */
+    /* color: #0e0b0b;  */
+   
+    border:solid rgba(0, 0, 0, 0.2) 6px;
+   
+    /* padding-bottom: 20px; */
+    box-sizing: border-box;
+    background-size: 100vw 100vh;
+}
+
+
+  

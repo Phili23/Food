@@ -4,8 +4,7 @@ import LadingPage from './components/LadingPage/index.jsx'
 import Home from './components/Home/index.jsx';
 import PostRecipes from './components/PostRecipes';
 import Detail from './components/Detail'; 
-import NavBar from './components/NavBar/NavBar';
-
+import About from './components/About/index.js';
 
 
 function App() {
@@ -15,13 +14,12 @@ function App() {
       <Route exact path="/" component={LadingPage}/> 
         <Route path='/home' component={Home}/>
       <Route path='/create' component={PostRecipes}/> 
-    
-     <Route path='/home:id' component={Detail}/>
-     <Route path="/" component={NavBar} /> 
-      </div>
-    
-      </BrowserRouter>
+       <Route path='/home:id' component={Detail}/>
+       <Route path='/about' component={About}/>
+    </div>
+   </BrowserRouter>
   );
 }
+
 
 export default App;

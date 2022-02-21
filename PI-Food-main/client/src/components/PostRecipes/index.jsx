@@ -47,13 +47,13 @@ export default function PostRecipes(params) {
 
     function Validate(input) {
         const reg = new RegExp('^[0-9]+$');
-        let errors = {}
+               let errors = {}
         if ((!input.name) || !input.name.trim() === '' || !/^[A-Z]+[A-Za-z0-9\s]+$/g.test(input.name)) errors.name = 'Please complete enter the first letter in capital letters, only letters and numbers';
         if ((!input.summary) || input.summary.trim() === '') errors.summary = 'please put the summary of the recipe'
         if ((!input.steps) || input.summary.trim() === '') errors.steps = 'please put the steps of the recipe'
-        if (input.healthScore.trim() === '' || !/^[1-9]\d*(\.\d+)?$/.test(input.healthScore) || input.spoonacularScore < 0 || input.spoonacularScore > 100 || !reg.test(input.spoonacularScore)) errors.spoonacularScore = 'put a puntuation between 0-100';
+        if (input.spoonacularScore.trim() === '' || !/^[1-9]\d*(\.\d+)?$/.test(input.spoonacularScore) || input.spoonacularScore < 0 || input.spoonacularScore > 100 || !reg.test(input.spoonacularScore)) errors.spoonacularScore = 'put a puntuation between 0-100';
         if (input.healthScore.trim() === '' || input.healthScore < 0 || input.healthScore > 100 || !reg.test(input.healthScore) || !/^[1-9]\d*(\.\d+)?$/.test(input.healthScore)) errors.healthScore = 'put a healthScore between 0-100'
-        if (!input.typeDiets.length) errors.typeDiets = 'You must select at least one diet type';
+             if (!input.typeDiets.length) errors.typeDiets = 'You must select at least one diet type';
         return errors;
     }
 
@@ -70,6 +70,7 @@ export default function PostRecipes(params) {
 
     function handleSubmit(e) {
         e.preventDefault();
+              
         if (Object.values(errors).length > 0) {
             alert("Please complete the information required");
         }
@@ -147,7 +148,7 @@ export default function PostRecipes(params) {
     //diets de la Api y TypeDiets...los creados por mi
     return (
         <div className="creater">
-            <Link className="" to='/home'><button className='butt1'>Back - Home Previus</button></Link>
+          
             <h1 className="title"> Create Food Recipes</h1>
             <form className='creater-form' onSubmit={handleSubmit} >
                 <div className=''>
@@ -170,6 +171,8 @@ export default function PostRecipes(params) {
                         <div className="">
                             <label className="label1">Summary:  </label>
                             <textarea className='input'
+                             rows="8"
+                             cols="18"
                                 value={input.summary}
                                 name="summary"
                                 placeholder='Summary...'
@@ -186,6 +189,8 @@ export default function PostRecipes(params) {
                         <label className="label1">Steps:  </label>
                         <textarea className='input'
                             type="text"
+                            rows="8"
+                            cols="8"
                             value={input.steps}
                             name="steps"
                             placeholder='Steps...'
@@ -196,14 +201,14 @@ export default function PostRecipes(params) {
                         errors.steps && <p className="error">{errors.steps}</p>
                     }
 
-
+<div className="formulario">
                     <div className="">
                         <label className="label1"> SpoonacularScore:  </label>
-                        <input className='input'
+                        <input className='inputp'
                             type="number"
                             value={input.spoonacularScore}
                             name="spoonacularScore"
-                            placeholder=' SpoonacularScore....'
+                            placeholder=' ...'
                             onChange={(e) => handleChange(e)} required
                         />
                     </div>
@@ -214,11 +219,11 @@ export default function PostRecipes(params) {
 
                     <div className="">
                         <label className="label1">HealthScore:  </label>
-                        <input className='input'
+                        <input className='inputp'
                             type="number"
                             value={input.healthScore}
                             name="healthScore"
-                            placeholder='HealthScore....'
+                            placeholder='....'
                             onChange={(e) => handleChange(e)} required
                         />
                     </div>
@@ -227,7 +232,10 @@ export default function PostRecipes(params) {
                     {
                         errors.healthScore && <p className="error">{errors.healthScore}</p>
                     }
-                    <div className="formulario">
+                    </div>
+
+                    <br/><br/>
+                    <div className="">
                         <div className="">
                             <label className="label1">Image:  </label>
                             <input className="input"
@@ -255,18 +263,21 @@ export default function PostRecipes(params) {
                     )}
 
                     <span className="">
+                    <Link className="" to='/home'><button className='butt'>Back - Home Previus</button></Link>
                         <button type='submit' className="butt1">Created Food Recipe</button>
                         {/*    <p className="msg">Formulario enviado exitosamente!</p> */}
                     </span>
                 </div>
-            </form>
-            {
+                {
                 input.typeDiets.map((el, i) =>
-                    <div key={i}>
-                        <button onClick={() => handleDelete(el)}>x</button>
-                        <p>{el}</p>
+                    <div className="creater1" key={i}>
+                        <button className="btn5" onClick={() => handleDelete(el)}>x</button>
+                        <p >{el}</p>
                     </div>)
             }
+                
+            </form>
+           
         </div>
     )
 

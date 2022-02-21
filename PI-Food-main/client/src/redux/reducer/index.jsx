@@ -3,7 +3,9 @@ const initialState = {
   allFoods: [],
   details: [],
   typed: [],
-  loading: false
+  loading: false,
+  reset: [],
+  detalle: []
 }
 
 
@@ -22,6 +24,7 @@ export default function rootReducer(state = initialState, action) {
         foods: action.payload,
       }
     case 'GET_DETAILS':
+      console.log('yo soy getDetail', action.payload)
       return {
         ...state,
         details: action.payload
@@ -51,6 +54,14 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         typed: action.payload
       }
+      case 'FILTER_CREATED':
+        const createdFilter = action.payload === 'created' ? state.allFoods.filter(i => i.created) :
+          state.allFoods.filter(el => !el.created)
+        return {
+          ...state,
+          foods: action.payload === 'All' ? state.allFoods : createdFilter
+        }
+
     case 'ORDER_RECIPES':
       const orderName = action.payload === 'asc' ?
         state.foods.sort(function (a, b) {
@@ -75,46 +86,48 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         foods: orderName
       }
-    /*3254,3411*/
+
     case 'ORDER_HEALTHSCORE':
-      const orderScore = action.payload === 'asc' ?
-        state.foods.sort(function (a, b) {
-          if (a.healthScore > b.healthScore) {
-            return 1;
-          }
-          if (b.healthScore > a.healthScore) {
-            return -1;
-          }
-          return 0;
-        }) :
-        state.foods.sort(function (a, b) {
-          if (a.healthScore > b.healthScore) {
-            return -1;
-          }
-          if (b.healthScore > a.healthScore) {
-            return 1;
-          }
-          return 0;
-        });
+      let orderScore =
+        action.payload === "desc" ?
+          state.foods.sort(function (a, b) {
+
+            return b.healthScore - a.healthScore;
+          }) :
+          state.foods.sort(function (a, b) {
+
+            return a.healthScore - b.healthScore;
+          })
       return {
         ...state,
-        foods: orderScore
+        foods: orderScore,
       }
 
-    case 'FILTER_CREATED':
-      const createdFilter = action.payload === 'created' ? state.allFoods.filter(i => i.created) :
-        state.allFoods.filter(el => !el.created)
+      
+    case 'ORDER_SPOOSCORE':
+      let orderSpoo =
+        action.payload === "desc" ?
+          state.foods.sort(function (a, b) {
+
+            return b.spoonacularScore - a.spoonacularScore;
+          }) :
+          state.foods.sort(function (a, b) {
+
+            return a.spoonacularScore - b.spoonacularScore;
+          })
       return {
         ...state,
-        foods: action.payload === 'All' ? state.allFoods : createdFilter
+        foods: orderSpoo,
       }
-      case 'LOADING':
-        return {
-            ...state,
-            loading: true
-        }
 
-    case 'NEXT_PAGE': 
+
+    case 'LOADING':
+      return {
+        ...state,
+        loading: true
+      }
+
+    case 'NEXT_PAGE':
       return {
         ...state,
         foods: action.payload
@@ -128,10 +141,26 @@ export default function rootReducer(state = initialState, action) {
 
       }
 
-    case 'MOSTRAR_ALERTA': {
-      return state
+    case 'DETALLE':
+      return {
+        ...state,
+        detalle: action.payload
 
-    }
+      }
+
+
+    case 'RESET':
+      return {
+        ...state,
+        params: []
+
+      }
+
+      case "DELETE_DB_FOOD":
+        console.log('yo soy delete de recetas')
+        return{
+            ...state,
+        }
     default:
       return state;
   }

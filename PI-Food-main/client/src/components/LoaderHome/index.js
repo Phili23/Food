@@ -1,5 +1,5 @@
 import './index.css';
-import BeatLoader from "react-spinners/BeatLoader";
+
 
 export default function LoaderHome() {
     return (

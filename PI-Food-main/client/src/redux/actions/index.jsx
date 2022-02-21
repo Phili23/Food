@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+
+// trae todas las recetas
 export default function getFood() {
     return async function (dispatch) {
         return axios.get('http://localhost:3001/Recipes')
@@ -15,7 +17,22 @@ export default function getFood() {
     }
 }
 
+/* export  function get(){
+    return async function(dispatch){
+        try{
+        var json=await axios.get('http://localhost:3001/Recipes')
+    
+    return dispatch({
+        type:'GET_FOOD',
+        payload:json.data
+    })
+}catch(error){
+    console.log(error)
+}
+}
+} */
 
+//filtro por nombre
 export function foodName(name) {
     console.log('yo soy el payload', name)
     return async function (dispatch) {
@@ -28,22 +45,25 @@ export function foodName(name) {
             })
     }
 }
-/*
-export function getDetail(id) {
-     return async function (dispatch) {
-                return axios
+/* export function getDetail(id) {
+    return function (dispatch) {
+        axios
             .get('http://localhost:3001/Recipes/' + id)
             .then((res) => {
                 dispatch({
-                    type: 'GET_DETAILS',
-                    payload: res.data
-                })
+                    type: 'GET_DETAILS'
+                    , payload: res.data
+                });
             })
-    }
-} 
+            .catch((err) => {
+                return err;
+            });
+    };
+} */
 
-*/
-export function getDetail(id) {
+
+//filtro por id
+ export function getDetail(id) {
     return async function (dispatch) {
         try {
             var json = await axios.get('http://localhost:3001/Recipes/' + id)
@@ -57,7 +77,22 @@ export function getDetail(id) {
             console.log(error)
         }
     }
-}
+} 
+
+/* 
+export function detalles(id){
+    console.log('yo soy el payload', id)
+    return async function (dispatch) {
+        return axios.get('http://localhost:3001/Recipes/' + id)
+            .then((res) => {
+                dispatch({
+                    type: 'DETALLE',
+                    payload: res.data
+                })
+            })
+    }
+} */
+
 
 //agregar una receta
 export function postFood(payload) {
@@ -117,13 +152,15 @@ export function healthOrder(payload) {
     }
 }
 
-
-export function filterCreated(payload) {
+export function SpooOrder(payload) {
     return {
-        type: 'FILTER_CREATED',
+        type: 'ORDER_SPOOSCORE',
         payload
     }
 }
+
+
+
 
 export function filterTypeDiets(payload) {
     return {
@@ -147,16 +184,33 @@ export function nextPage() {
     }
 }
 
+export function reset() {
+    return {
+        type: 'RESET'
+    }
+}
 
 
-export function mostrarAlerta(msg, categoria) {
 
-    return function (dispatch) {
-        dispatch({
-            type: 'MOSTRAR_ALERTA',
-            payload: msg, categoria
-        });
-    };
-};
+export function filterCreated(payload) {
+    return {
+        type: 'FILTER_CREATED',
+        payload
+    }
+}
 
 
+export function deleteDbFood(payload) {
+    return async function (dispatch) {
+        try {
+            const json = await axios.delete(`http://localhost:3001/Recipes/delete/${payload}` )
+            console.log(json.data, 'hola json')
+            return dispatch({
+                type: "DELETE_DB_FOOD",
+                payload: json.data
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
