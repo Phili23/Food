@@ -100,7 +100,7 @@ export default function rootReducer(state = initialState, action) {
           })
       return {
         ...state,
-        foods: orderScore,
+        foods: orderScore
       }
 
       
