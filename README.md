@@ -8,22 +8,22 @@
 
 <p align="right">
   <img height="200" src="./cooking.png" />
-</p>
-<p align='left'>
+</p></br>
+<p align='center'>
     <img src='./asses/ladinpage.jpg' </img>
-</p>
-<p align='left'>
+</p></br>
+<p align='center'>
     <img src='./asses/home.jpg' </img>
-</p>
-<p align='left'>
+</p></br>
+<p align='center'>
     <img src='./asses/sort.jpg' </img>
-</p>
-<p align='left'>
+</p></br>
+<p align='center'>
     <img src='./asses/detail.jpg' </img>
-</p>
+</p></br>
 <p align='left'>
     <img src='./asses/crear.jpg' </img>
-</p>
+</p></br>
 ## Objetivos del Proyecto
 
 - Construir una App utlizando React, Redux, Node y Sequelize.
