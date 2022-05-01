@@ -4,9 +4,9 @@ const {TypeDiet,getAllDietss} = require('../db');
 
 const axios=require('axios')
 
-/* let diets = [{name: 'gluten free'},{name: 'ketogenic'},{name: 'vegetarian'},{name: 'fodmap friendly'},
+ let diets = [{name: 'gluten free'},{name: 'ketogenic'},{name: 'vegetarian'},{name: 'fodmap friendly'},
 {name: 'lacto ovo vegetarian'},{name: 'vegan'},{name: 'pescatarian'},{name: 'paleolithic'},{name: 'primal'},
-{name: 'whole 30'}, {name: 'dairy Free'}]; */
+{name: 'whole 30'}, {name: 'dairy Free'}]; 
 
 
 

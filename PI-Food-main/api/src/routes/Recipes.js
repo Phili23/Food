@@ -2,7 +2,7 @@ const { Router } = require('express');
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 const { Recipe, TypeDiet } = require('../db')
-const { getAllRecipes } = require('../controllers/getRecipes')
+const { getAllRecipes,getApiInfo } = require('../controllers/getRecipes')
 const { API_KEY } = process.env;
 const { axios } = require('axios')
 
@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
       res.status(200).send(dogsTotal)
     };
   } catch (error) {
-    console.log("Se encontro una falla en el get /dogs", error)
+    console.log("Se encontro una falla en el get /food", error)
   }
 
 
