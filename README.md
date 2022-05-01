@@ -2,12 +2,28 @@
     <img src='https://static.wixstatic.com/media/85087f_0d84cbeaeb824fca8f7ff18d7c9eaafd~mv2.png/v1/fill/w_160,h_30,al_c,q_85,usm_0.66_1.00_0.01/Logo_completo_Color_1PNG.webp' </img>
 </p>
 
+
+
 # Individual Project - Henry Food
 
 <p align="right">
   <img height="200" src="./cooking.png" />
 </p>
-
+<p align='left'>
+    <img src='./asses/ladinpage.jpg' </img>
+</p>
+<p align='left'>
+    <img src='./asses/home.jpg' </img>
+</p>
+<p align='left'>
+    <img src='./asses/sort.jpg' </img>
+</p>
+<p align='left'>
+    <img src='./asses/detail.jpg' </img>
+</p>
+<p align='left'>
+    <img src='./asses/crear.jpg' </img>
+</p>
 ## Objetivos del Proyecto
 
 - Construir una App utlizando React, Redux, Node y Sequelize.
@@ -171,3 +187,7 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ ] Al menos tener un componente del frontend con sus tests respectivos
 - [ ] Al menos tener una ruta del backend con sus tests respectivos
 - [ ] Al menos tener un modelo de la base de datos con sus tests respectivos
+
+<p align="right">
+  <img height="200" src="./cooking.png" />
+</p>
